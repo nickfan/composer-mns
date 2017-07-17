@@ -46,9 +46,9 @@ class BatchReceiveMessageResponse extends BaseResponse
             $this->parseErrorResponse($statusCode, $content);
         }
 
-        $xmlReader = new \XMLReader();
+        $xmlReader = $this->loadXmlContent($content);
+
         try {
-            $xmlReader->XML($content);
             while ($xmlReader->read())
             {
                 if ($xmlReader->nodeType == \XMLReader::ELEMENT
@@ -67,9 +67,9 @@ class BatchReceiveMessageResponse extends BaseResponse
     public function parseErrorResponse($statusCode, $content, MnsException $exception = NULL)
     {
         $this->succeed = FALSE;
-        $xmlReader = new \XMLReader();
+        $xmlReader = $this->loadXmlContent($content);
+
         try {
-            $xmlReader->XML($content);
             $result = XMLParser::parseNormalError($xmlReader);
             if ($result['Code'] == Constants::QUEUE_NOT_EXIST)
             {

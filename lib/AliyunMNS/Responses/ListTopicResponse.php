@@ -40,10 +40,10 @@ class ListTopicResponse extends BaseResponse
         }
 
         $this->succeed = TRUE;
-        $xmlReader = new \XMLReader();
+        $xmlReader = $this->loadXmlContent($content);
+
         try
         {
-            $xmlReader->XML($content);
             while ($xmlReader->read())
             {
                 if ($xmlReader->nodeType == \XMLReader::ELEMENT)
@@ -91,10 +91,10 @@ class ListTopicResponse extends BaseResponse
     public function parseErrorResponse($statusCode, $content, MnsException $exception = NULL)
     {
         $this->succeed = FALSE;
-        $xmlReader = new \XMLReader();
+        $xmlReader = $this->loadXmlContent($content);
+
         try
         {
-            $xmlReader->XML($content);
             $result = XMLParser::parseNormalError($xmlReader);
 
             throw new MnsException($statusCode, $result['Message'], $exception, $result['Code'], $result['RequestId'], $result['HostId']);

@@ -16,9 +16,13 @@ use AliyunMNS\Responses\MnsPromise;
 class HttpClient
 {
     private $client;
+    private $region;
+    private $accountId;
     private $accessId;
     private $accessKey;
     private $securityToken;
+    private $requestTimeout;
+    private $connectTimeout;
 
     public function __construct($endPoint, $accessId,
         $accessKey, $securityToken = NULL, Config $config = NULL)
@@ -36,11 +40,36 @@ class HttpClient
                     'Host' => $endPoint
                 ],
                 'proxy' => $config->getProxy(),
-                'expect' => $config->getExpectContinue(),
-                'timeout' => $config->getRequestTimeout()
+                'expect' => $config->getExpectContinue()
             ]
         ]);
+        $this->requestTimeout = $config->getRequestTimeout();
+        $this->connectTimeout = $config->getConnectTimeout();
         $this->securityToken = $securityToken;
+        $this->endpoint = $endPoint;
+        $this->parseEndpoint();
+    }
+
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    public function getAccountId()
+    {
+        return $this->accountId;
+    }
+
+    // This function is for SDK internal use
+    private function parseEndpoint()
+    {
+        $pieces = explode("//", $this->endpoint);
+        $host = end($pieces);
+
+        $host_pieces = explode(".", $host);
+        $this->accountId = $host_pieces[0];
+        $region_pieces = explode("-internal", $host_pieces[2]);
+        $this->region = $region_pieces[0];
     }
 
     private function addRequiredHeaders(BaseRequest &$request)
@@ -98,6 +127,9 @@ class HttpClient
         if ($body != NULL) {
             $parameters['body'] = $body;
         }
+
+        $parameters['timeout'] = $this->requestTimeout;
+        $parameters['connect_timeout'] = $this->connectTimeout;
 
         $request = new Request(strtoupper($request->getMethod()),
             $request->getResourcePath(), $request->getHeaders());

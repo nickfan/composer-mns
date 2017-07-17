@@ -156,7 +156,7 @@ class SubscriptionAttributes
                     $xmlReader->read();
                     if ($xmlReader->nodeType == \XMLReader::TEXT)
                     {
-                        $subscriptionName = $xmlReader->value;
+                        $endpoint = $xmlReader->value;
                     }
                     break;
                 case 'NotifyStrategy':

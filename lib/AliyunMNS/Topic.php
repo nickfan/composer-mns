@@ -53,6 +53,33 @@ class Topic
         return $this->client->sendRequest($request, $response);
     }
 
+    public function generateQueueEndpoint($queueName)
+    {
+        return "acs:mns:" . $this->client->getRegion() . ":" . $this->client->getAccountId() . ":queues/" . $queueName;
+    }
+
+    public function generateMailEndpoint($mailAddress)
+    {
+        return "mail:directmail:" . $mailAddress;
+    }
+
+    public function generateSmsEndpoint($phone = null)
+    {
+        if ($phone)
+        {
+            return "sms:directsms:" . $phone;
+        }
+        else
+        {
+            return "sms:directsms:anonymous";
+        }
+    }
+
+    public function generateBatchSmsEndpoint()
+    {
+        return "sms:directsms:anonymous";
+    }
+
     public function publishMessage(PublishMessageRequest $request)
     {
         $request->setTopicName($this->topicName);

@@ -172,6 +172,8 @@ class Queue
      * detail API sepcs:
      * https://docs.aliyun.com/?spm=#/pub/mns/api_reference/api_spec&message_operation
      *
+     * @param waitSeconds: the long polling waitseconds
+     *
      * @return ReceiveMessageResponse: containing the messageBody and properties
      *          the response is same as PeekMessageResponse,
      *          except that the receiptHandle is also returned in receiveMessage
@@ -180,9 +182,9 @@ class Queue
      * @throws MessageNotExistException if no message exists in the queue
      * @throws MnsException if any other exception happends
      */
-    public function receiveMessage()
+    public function receiveMessage($waitSeconds = NULL)
     {
-        $request = new ReceiveMessageRequest($this->queueName);
+        $request = new ReceiveMessageRequest($this->queueName, $waitSeconds);
         $response = new ReceiveMessageResponse($this->base64);
         return $this->client->sendRequest($request, $response);
     }

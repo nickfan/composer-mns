@@ -5,6 +5,7 @@ use AliyunMNS\Queue;
 use AliyunMNS\Config;
 use AliyunMNS\Http\HttpClient;
 use AliyunMNS\AsyncCallback;
+use AliyunMNS\Model\AccountAttributes;
 use AliyunMNS\Requests\CreateQueueRequest;
 use AliyunMNS\Responses\CreateQueueResponse;
 use AliyunMNS\Requests\ListQueueRequest;
@@ -17,6 +18,10 @@ use AliyunMNS\Requests\DeleteTopicRequest;
 use AliyunMNS\Responses\DeleteTopicResponse;
 use AliyunMNS\Requests\ListTopicRequest;
 use AliyunMNS\Responses\ListTopicResponse;
+use AliyunMNS\Requests\GetAccountAttributesRequest;
+use AliyunMNS\Responses\GetAccountAttributesResponse;
+use AliyunMNS\Requests\SetAccountAttributesRequest;
+use AliyunMNS\Responses\SetAccountAttributesResponse;
 
 /**
  * Please refer to
@@ -194,6 +199,50 @@ class Client
     {
         $response = new ListTopicResponse();
         return $this->client->sendRequest($request, $response);
+    }
+
+    /**
+     * Query the AccountAttributes
+     *
+     * @return GetAccountAttributesResponse: the response containing topicNames
+     * @throws MnsException if any exception happends
+     */
+    public function getAccountAttributes()
+    {
+        $request = new GetAccountAttributesRequest();
+        $response = new GetAccountAttributesResponse();
+        return $this->client->sendRequest($request, $response);
+    }
+
+    public function getAccountAttributesAsync(AsyncCallback $callback = NULL)
+    {
+        $request = new GetAccountAttributesRequest();
+        $response = new GetAccountAttributesResponse();
+        return $this->client->sendRequestAsync($request, $response, $callback);
+    }
+
+    /**
+     * Set the AccountAttributes
+     *
+     * @param AccountAttributes $attributes: the AccountAttributes to set
+     *
+     * @return SetAccountAttributesResponse: the response
+     *
+     * @throws MnsException if any exception happends
+     */
+    public function setAccountAttributes(AccountAttributes $attributes)
+    {
+        $request = new SetAccountAttributesRequest($attributes);
+        $response = new SetAccountAttributesResponse();
+        return $this->client->sendRequest($request, $response);
+    }
+
+    public function setAccountAttributesAsync(AccountAttributes $attributes,
+        AsyncCallback $callback = NULL)
+    {
+        $request = new SetAccountAttributesRequest($attributes);
+        $response = new SetAccountAttributesResponse();
+        return $this->client->sendRequestAsync($request, $response, $callback);
     }
 }
 

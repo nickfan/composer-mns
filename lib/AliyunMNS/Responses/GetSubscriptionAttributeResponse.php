@@ -34,10 +34,10 @@ class GetSubscriptionAttributeResponse extends BaseResponse
             $this->parseErrorResponse($statusCode, $content);
         }
 
-        $xmlReader = new \XMLReader();
+        $xmlReader = $this->loadXmlContent($content);
+
         try
         {
-            $xmlReader->XML($content);
             $this->attributes = SubscriptionAttributes::fromXML($xmlReader);
         }
         catch (\Exception $e)
@@ -53,10 +53,10 @@ class GetSubscriptionAttributeResponse extends BaseResponse
     public function parseErrorResponse($statusCode, $content, MnsException $exception = NULL)
     {
         $this->succeed = FALSE;
-        $xmlReader = new \XMLReader();
+        $xmlReader = $this->loadXmlContent($content);
+
         try
         {
-            $xmlReader->XML($content);
             $result = XMLParser::parseNormalError($xmlReader);
             if ($result['Code'] == Constants::SUBSCRIPTION_NOT_EXIST)
             {

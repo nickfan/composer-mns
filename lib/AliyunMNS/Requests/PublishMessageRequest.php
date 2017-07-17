@@ -11,12 +11,13 @@ class PublishMessageRequest extends BaseRequest
 
     private $topicName;
 
-    public function __construct($messageBody)
+    public function __construct($messageBody, $messageAttributes = NULL)
     {
         parent::__construct('post', NULL);
 
         $this->topicName = NULL;
         $this->messageBody = $messageBody;
+        $this->messageAttributes = $messageAttributes;
     }
 
     public function setTopicName($topicName)
