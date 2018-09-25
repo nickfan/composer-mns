@@ -15,7 +15,7 @@ build:
 
     tests:
         before:
-            - command: 'composer require laravel/framework:5.2'
+            - command: 'composer require "guzzlehttp/guzzle:~5.3|~6.0"'
         override:
             - command: 'phpunit --coverage-clover=some-file'
               coverage:

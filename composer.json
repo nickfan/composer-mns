@@ -1,17 +1,21 @@
 {
-    "name": "abe/laravel-mns",
-    "description": "Laravel queue driver bases on Aliyun Message Service(MNS).",
-    "keywords": ["aliyun", "laravel", "queue", "mns"],
+    "name": "nickfan/composer-mns",
+    "description": "composer version of Aliyun Message Service(MNS),Base On Laravel-MNS",
+    "keywords": ["aliyun", "php", "composer", "mns"],
     "license": "MIT",
     "authors": [
         {
             "name": "Abraham Greyson",
             "email": "82011220@qq.com"
+        },
+        {
+            "name": "Nick Fan",
+            "email": "nickfan81@gmail.com"
         }
     ],
     "support": {
-        "issues": "https://github.com/abrahamgreyson/laravel-mns/issues",
-        "source": "https://github.com/abrahamgreyson/laravel-mns"
+        "issues": "https://github.com/nickfan/composer-mns/issues",
+        "source": "https://github.com/nickfan/composer-mns"
     },
     "require": {
         "guzzlehttp/guzzle": "^6.2",
@@ -24,12 +28,12 @@
     "autoload": {
         "psr-4": {
             "AliyunMNS\\": "lib/AliyunMNS/",
-            "LaravelMns\\": "src/"
+            "ComposerMns\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "LaravelMns\\Test\\": "tests/"
+            "ComposerMns\\Test\\": "tests/"
         }
     },
     "minimum-stability": "dev",

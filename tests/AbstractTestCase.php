@@ -12,7 +12,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace LaravelMns\Test;
+namespace ComposerMns\Test;
 
 use Mockery as m;
 use PHPUnit_Runner_Version;

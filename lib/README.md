@@ -3,9 +3,3 @@ Please refer to http://www.aliyun.com/product/mns and  https://docs.aliyun.com/?
 
 ## Samples    
 You must fulfill the AccessId/AccessKey/AccountID in the example before running.   
-
-## Require
-PHP >= 5.5
-
-## Usage
-Add the require_once("/path_to_sdk/mns-autoloader.php") in your php file when using sdk
