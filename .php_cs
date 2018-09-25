@@ -1,12 +1,12 @@
 <?php
 
 $header = <<<EOF
-Laravel-Mns -- 阿里云消息队列（MNS）的 Laravel 适配。
+Composer-Mns -- 阿里云消息队列（MNS）的 Composer 适配。
 
-This file is part of the abe/laravel-mns.
+This file is part of the nickfan/composer-mns.
 
-(c) Abraham Greyson <82011220@qq.com>
-@link: https://github.com/abrahamgreyson/laravel-mns
+(c) Nick Fan <nickfan81@gmail.com>
+@link: https://github.com/nickfan/composer-mns
 
 This source file is subject to the MIT license that is bundled
 with this source code in the file LICENSE.

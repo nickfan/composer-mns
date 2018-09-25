@@ -13,16 +13,6 @@ php:
 env:
   global:
     - COMPOSER_DISCARD_CHANGES=true
-  matrix:
-    - laravel_version="5.1.*"  composer_prefer="--prefer-lowest"
-    - laravel_version="5.1.*"  composer_prefer="--prefer-stable"
-    - laravel_version="5.1.*"  composer_prefer=""
-    - laravel_version="5.2.*"  composer_prefer="--prefer-lowest"
-    - laravel_version="5.2.*"  composer_prefer="--prefer-stable"
-    - laravel_version="5.2.*"  composer_prefer=""
-    - laravel_version="5.0.*"  composer_prefer="--prefer-lowest"
-    - laravel_version="5.0.*"  composer_prefer="--prefer-stable"
-    - laravel_version="5.0.*"  composer_prefer=""
 
 matrix:
   global:
