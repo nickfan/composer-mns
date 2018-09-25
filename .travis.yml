@@ -25,7 +25,6 @@ matrix:
 install:
   # speed up package installation process use parallel.
   - composer global require hirak/prestissimo
-  - composer require laravel/framework:$laravel_version
   - composer update --prefer-source --no-interaction $composer_prefer
 
 before_script:
