@@ -18,8 +18,8 @@
         "source": "https://github.com/nickfan/composer-mns"
     },
     "require": {
-        "guzzlehttp/guzzle": "^6.2",
-        "guzzlehttp/psr7": "^1.3"
+        "guzzlehttp/guzzle": "~6.0",
+        "guzzlehttp/psr7": "~1.3"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.1",
